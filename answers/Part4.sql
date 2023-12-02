@@ -1,0 +1,6 @@
+# sorting by some legendaries first, then power level
+select pokemons.name, trainers.trainername, pokemon_trainer.pokelevel, types1.name AS primary_type, types2.name AS secondary_type from pokemons join types as types1 on pokemons.primary_type = types1.id left join types as types2 on pokemons.secondary_type = types2.id join pokemon_trainer on pokemon_trainer.pokemon_id = pokemons.id join trainers on trainers.trainerID = pokemon_trainer.trainerID order by case when pokemons.name = "Mew" OR pokemons.name = "Suicune" OR pokemons.name = "Mewtwo" OR pokemons.name = "Latios" OR pokemons.name = "Latias" OR pokemons.name = "Entei" OR pokemons.name = "Articuno" OR pokemons.name = "Zapdos" OR pokemons.name = "Moltres" OR pokemons.name = "Lugia" OR pokemons.name = "Groudon" OR pokemons.name
+= "Raikou" OR pokemons.name = "Kyogre" OR pokemons.name = "Rayquaza" OR pokemons.name = "Registeel" OR pokemons.name = "Dialga" OR pokemons.name = "Jirachi" OR pokemons.name = "Celebi" then 0 else 1 end, pokemon_trainer.pokelevel desc;
+
+# think about how to sort it by types...
+# fun little thing for later: sort by avg power level, sort by number of legendaries each trainerid has
